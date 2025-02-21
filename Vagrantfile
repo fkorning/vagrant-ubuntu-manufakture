@@ -286,14 +286,13 @@ Vagrant.configure("2") do |config|
   # @see https://wiki.ubuntulinux.org/wiki/Docker
 
   config.vm.provision "shell", inline: <<-SHELL
+
+    #========================================================================#
+    # System
+    #========================================================================#
   
     echo ""
     echo "configuring basic system"
-    cp /vagrant/motd                /etc
-    # todo certificates and credentials
-    # warning: do not overwrite the vagrant credentials (~/.ssh/authorized_keys)
-    # if using an ssh-agent, ssh-keys should already be preloaded (ssh-add -L) 
-            
 
     # ?
     # Check this - this was to copy stuff from the host into the box
@@ -302,11 +301,20 @@ Vagrant.configure("2") do |config|
     echo ""  
     echo "creating source directories"
     mkdir -p /mnt/work/faktory  
+    
+    # motd
+    cp /vagrant/motd                /etc
+
+    
+    # todo certificates and credentials
+    # warning: do not overwrite the vagrant credentials (~/.ssh/authorized_keys)
+    # if using an ssh-agent, ssh-keys should already be preloaded (ssh-add -L) 
+    
         
 
-    #========================================================================#
-    # System
-    #========================================================================#
+    #------------------------------------------------------------------------#
+    # Sysutils
+    #------------------------------------------------------------------------#
 
     #apt-get update
 
